@@ -150,9 +150,12 @@ const AdminDashboard = () => {
                       </div>
 
                       <h4 className="text-xl font-bold text-white mb-1 group-hover:text-blue-500 transition-colors truncate">{msg.name}</h4>
-                      <p className="text-blue-500 text-sm font-medium mb-6 flex items-center gap-2 truncate">
-                        <Mail size={14} /> {msg.email}
-                      </p>
+                      <a 
+                      href={`mailto:${msg.email}`} 
+                      className="text-blue-500 text-sm font-medium mb-6 flex items-center gap-2 truncate hover:underline"
+                    >
+                      <Mail size={14} /> {msg.email}
+                    </a>
 
                       <div className="bg-[#0d1525] p-5 rounded-2xl border border-gray-800/50 mb-4">
                         <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Subject</p>

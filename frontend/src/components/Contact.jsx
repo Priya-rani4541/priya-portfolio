@@ -132,14 +132,6 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-
-            {/* Availability Badge */}
-            <div className="bg-blue-600/5 dark:bg-blue-500/5 border border-blue-500/20 p-6 rounded-3xl flex items-center gap-4">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
-              <p className="text-blue-600 dark:text-blue-400 font-bold">
-                Available for new opportunities & collaborations
-              </p>
-            </div>
           </motion.div>
 
           {/* Right Side: Contact Form */}

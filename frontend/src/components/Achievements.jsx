@@ -10,14 +10,14 @@ const Achievements = () => {
       title: "LeetCode Milestone",
       description: "Completed 150+ DSA Questions Having Four Budge - LeetCode",
       date: "Feb' 26",
-      link: "https://leetcode.com/u/Priya-rani4541/",
+      link: "https://leetcode.com/u/Priya_-0104/",
       image: leetcodeImg
     },
     {
       title: "Patent Filed",
       description: "Automatic Adjustable Stabilizer Holder for Gas Stove, IPR India - App.No: 202511067215",
       date: "Jul' 25",
-      link: "#",
+      link: "https://drive.google.com/file/d/1tAk6kRZ6odV1xlS-UYAre3Uo4RxEQe3Y/view?usp=drive_link",
       image: patentImg
     }
   ];

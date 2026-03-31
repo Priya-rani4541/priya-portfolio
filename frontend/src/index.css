@@ -1,4 +1,7 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @theme {
   --color-primary-light: #3b82f6;
@@ -47,6 +50,48 @@ html {
 /* Custom Cursor Hide */
 @media (min-width: 1024px) {
   * {
-    cursor: none !important;
+    cursor: auto !important;
   }
+} 
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth transition */
+body {
+  transition: all 0.3s ease;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(to right, #6389d9, #9d72cc, #c962b9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Section heading */
+.section-heading {
+  @apply text-4xl md:text-5xl font-extrabold uppercase tracking-tight;
+}
+
+.heading-underline {
+  @apply w-12 h-1 bg-cyan-400 mx-auto mt-4 rounded-full;
+}
+
+html {
+  scroll-behavior: smooth;
 }

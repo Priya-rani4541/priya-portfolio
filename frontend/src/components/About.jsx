@@ -86,9 +86,9 @@ const About = () => {
             {[
               { label: "Projects Completed", value: "5+" },
               { label: "LeetCode Solved", value: "150+" },
-              { label: "Certificates Achieved", value: "12+" }
+              { label: "Certificates Achieved", value: "15+" }
             ].map((stat, index) => (
-              <motion.divc
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.5, y: 30 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}

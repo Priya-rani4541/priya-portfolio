@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Building2, Calendar } from 'lucide-react';
-import aboutImg from '../assets/about.png';
-import profileImg from '../assets/priya.jpeg';
+import aboutImg from '../assets/ngo_pic.jpeg';
+import profileImg from '../assets/india_nepal.jpeg';
 
 const Leadership = () => {
   const works = [
     {
       title: "Volunteer - Digital Literacy Trainer",
-      organization: "NGME Trust",
+      organization: "NGME Trust (NGO)",
       duration: "June 2024 - July 2024",
       content: "I served as a Digital Literacy Trainer, where I helped rural children enhance their learning through fundamental digital skills. Alongside this, I interacted with parents to raise awareness about the value of education and the role of digital literacy in supporting their children’s academic growth, consistency in schooling, and overall future development.",
       image: aboutImg

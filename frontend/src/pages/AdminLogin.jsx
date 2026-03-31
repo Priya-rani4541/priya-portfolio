@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, Loader2, AlertCircle, LayoutDashboard } from 'lucide-react';
 import axios from 'axios';
 
+
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,12 +14,19 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
+  // useEffect(() => {
+  //   const adminToken = localStorage.getItem('adminToken');
+  //   if (adminToken) {
+  //     navigate('/admin/dashboard', { replace: true });
+  //   }
+  // }, [navigate]);
   useEffect(() => {
-    const adminToken = localStorage.getItem('adminToken');
-    if (adminToken) {
-      navigate('/admin/dashboard');
-    }
-  }, [navigate]);
+  const adminToken = localStorage.getItem('adminToken');
+
+  if (adminToken) {
+    navigate('/admin/dashboard', { replace: true });
+  }
+}, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +48,12 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0a111e] relative overflow-hidden px-4">
       {/* Background Glows */}
+      <button
+      onClick={() => navigate('/')}
+      className="absolute top-5 left-5 text-gray-400 hover:text-blue-500"
+      >
+      ← Home
+      </button>
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
 

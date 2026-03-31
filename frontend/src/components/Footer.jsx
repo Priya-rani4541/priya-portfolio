@@ -37,9 +37,14 @@ const Footer = () => {
             </div>
             <p className="text-gray-500 dark:text-gray-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
               &copy; {currentYear} Priya Rani. All rights reserved.
-              <Link to="/admin/login" className="opacity-0 hover:opacity-100 transition-opacity ml-2 text-gray-400" title="Admin Login">
-                <Lock size={12} />
-              </Link>
+
+<Link 
+  to="/admin/login" 
+  className="ml-3 flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-500 hover:text-white hover:bg-blue-600 transition-all text-sm"
+>
+  <Lock size={14} />
+  Admin Login
+</Link>
             </p>
           </div>
 
