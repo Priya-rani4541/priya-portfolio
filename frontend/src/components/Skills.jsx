@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // ✅ NEW STATE FOR ANIMATION
   const [animate, setAnimate] = useState(false);
 
   const categories = ["Languages", "Frontend", "Backend", "Databases", "Tools"];
@@ -17,10 +15,7 @@ const Skills = () => {
         const res = await axios.get(
           "https://priya-portfolio-8d97.onrender.com/api/skills"
         );
-
-        console.log("API DATA:", res.data);
         setSkills(res.data);
-
       } catch (error) {
         console.error("ERROR:", error);
       } finally {
@@ -30,10 +25,10 @@ const Skills = () => {
 
     fetchSkills();
 
-    // ✅ TRIGGER ANIMATION AFTER LOAD
+    // 🔥 Smooth animation trigger after slight delay
     setTimeout(() => {
       setAnimate(true);
-    }, 300);
+    }, 500);
 
   }, []);
 
@@ -41,17 +36,20 @@ const Skills = () => {
     <section id="skills" className="py-20">
       <div className="max-w-7xl mx-auto px-4">
 
+        {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold gradient-text mb-4">
             Technical Skills
           </h2>
         </div>
 
+        {/* Loader */}
         {loading ? (
-          <p className="text-center text-white">
-            Loading skills...
-          </p>
+          <div className="flex justify-center items-center h-40">
+            <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
         ) : (
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             {categories.map((category) => {
@@ -62,14 +60,22 @@ const Skills = () => {
               if (categorySkills.length === 0) return null;
 
               return (
-                <div key={category} className="p-6 bg-gray-800 rounded-xl">
+                <motion.div
+                  key={category}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="p-6 bg-gray-800 rounded-xl shadow-lg"
+                >
 
-                  <h3 className="text-xl text-white mb-4">{category}</h3>
+                  <h3 className="text-xl text-white mb-6 font-semibold">
+                    {category}
+                  </h3>
 
                   {categorySkills.map((skill, index) => (
-                    <div key={skill._id} className="mb-4">
+                    <div key={skill._id} className="mb-5">
 
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-center mb-2">
 
                         <div className="flex items-center gap-3">
 
@@ -79,24 +85,26 @@ const Skills = () => {
                             className="w-6 h-6"
                           />
 
-                          <span className="text-white">{skill.name}</span>
+                          <span className="text-white text-sm font-medium">
+                            {skill.name}
+                          </span>
                         </div>
 
-                        <span className="text-blue-400">
+                        <span className="text-blue-400 text-sm font-bold">
                           {skill.level}%
                         </span>
                       </div>
 
-                      {/* ✅ ANIMATED PROGRESS BAR */}
-                      <div className="w-full bg-gray-600 h-2 rounded mt-2 overflow-hidden">
+                      {/* 🔥 SMOOTH ANIMATED BAR */}
+                      <div className="w-full bg-gray-600 h-2 rounded-full overflow-hidden">
                         <motion.div
-                          className="bg-blue-500 h-2 rounded"
+                          className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
                           initial={{ width: 0 }}
                           animate={{ width: animate ? `${skill.level}%` : "0%" }}
                           transition={{
-                            duration: 1.5,
+                            duration: 1.8,
                             delay: index * 0.2,
-                            ease: "easeOut"
+                            ease: "easeInOut"
                           }}
                         />
                       </div>
@@ -104,7 +112,7 @@ const Skills = () => {
                     </div>
                   ))}
 
-                </div>
+                </motion.div>
               );
             })}
 
