@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Github, ExternalLink, Code2 } from 'lucide-react';
 
 // ✅ CENTRALIZED API
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL ="https://priya-portfolio-8d97.onrender.com"
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
