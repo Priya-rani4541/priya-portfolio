@@ -6,3 +6,4 @@ router.get('/', getSkills);
 router.post('/', createSkill);
 
 module.exports = router;
+

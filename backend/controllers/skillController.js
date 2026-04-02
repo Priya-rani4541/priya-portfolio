@@ -5,9 +5,15 @@ const Skill = require('../models/Skill');
 // @access  Public
 const getSkills = async (req, res) => {
   try {
-    const skills = await Skill.find({});
+    const skills = await Skill.find({}).sort({ createdAt: 1 });
+
+    // DEBUG (optional)
+    console.log("Skills fetched:", skills);
+
     res.status(200).json(skills);
+
   } catch (error) {
+    console.error("GET SKILLS ERROR:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -17,10 +23,26 @@ const getSkills = async (req, res) => {
 // @access  Private
 const createSkill = async (req, res) => {
   try {
-    const { name, category, icon } = req.body;
-    const skill = await Skill.create({ name, category, icon });
+    const { name, category, level, icon } = req.body;
+
+    // Validation
+    if (!name || !category || !level || !icon) {
+      return res.status(400).json({
+        message: "All fields (name, category, level, icon) are required"
+      });
+    }
+
+    const skill = await Skill.create({
+      name,
+      category,
+      level,   // ✅ FIXED
+      icon     // ✅ FIXED
+    });
+
     res.status(201).json(skill);
+
   } catch (error) {
+    console.error("CREATE SKILL ERROR:", error);
     res.status(400).json({ message: error.message });
   }
 };
