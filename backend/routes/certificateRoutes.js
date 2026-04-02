@@ -1,6 +1,6 @@
 // routes/certificateRoutes.js
 import express from "express";
-import Certificate from "../models/Certificate.js";
+import Certificate from "../models/Certificate";
 
 const router = express.Router();
 
