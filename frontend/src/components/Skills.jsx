@@ -6,6 +6,9 @@ const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // ✅ NEW STATE FOR ANIMATION
+  const [animate, setAnimate] = useState(false);
+
   const categories = ["Languages", "Frontend", "Backend", "Databases", "Tools"];
 
   useEffect(() => {
@@ -15,9 +18,9 @@ const Skills = () => {
           "https://priya-portfolio-8d97.onrender.com/api/skills"
         );
 
-        console.log("API DATA:", res.data); // DEBUG
-
+        console.log("API DATA:", res.data);
         setSkills(res.data);
+
       } catch (error) {
         console.error("ERROR:", error);
       } finally {
@@ -26,6 +29,12 @@ const Skills = () => {
     };
 
     fetchSkills();
+
+    // ✅ TRIGGER ANIMATION AFTER LOAD
+    setTimeout(() => {
+      setAnimate(true);
+    }, 300);
+
   }, []);
 
   return (
@@ -39,7 +48,9 @@ const Skills = () => {
         </div>
 
         {loading ? (
-          <p className="text-center">Loading...</p>
+          <p className="text-center text-white">
+            Loading skills...
+          </p>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -55,7 +66,7 @@ const Skills = () => {
 
                   <h3 className="text-xl text-white mb-4">{category}</h3>
 
-                  {categorySkills.map((skill) => (
+                  {categorySkills.map((skill, index) => (
                     <div key={skill._id} className="mb-4">
 
                       <div className="flex justify-between items-center">
@@ -63,7 +74,7 @@ const Skills = () => {
                         <div className="flex items-center gap-3">
 
                           <img
-                            src={skill.icon}   // ✅ FROM DATABASE
+                            src={skill.icon}
                             alt={skill.name}
                             className="w-6 h-6"
                           />
@@ -76,10 +87,17 @@ const Skills = () => {
                         </span>
                       </div>
 
-                      <div className="w-full bg-gray-600 h-2 rounded mt-2">
-                        <div
+                      {/* ✅ ANIMATED PROGRESS BAR */}
+                      <div className="w-full bg-gray-600 h-2 rounded mt-2 overflow-hidden">
+                        <motion.div
                           className="bg-blue-500 h-2 rounded"
-                          style={{ width: `${skill.level}%` }}
+                          initial={{ width: 0 }}
+                          animate={{ width: animate ? `${skill.level}%` : "0%" }}
+                          transition={{
+                            duration: 1.5,
+                            delay: index * 0.2,
+                            ease: "easeOut"
+                          }}
                         />
                       </div>
 
