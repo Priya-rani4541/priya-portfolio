@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [animate, setAnimate] = useState(false);
 
   const categories = ["Languages", "Frontend", "Backend", "Databases", "Tools"];
 
@@ -24,12 +23,6 @@ const Skills = () => {
     };
 
     fetchSkills();
-
-    // 🔥 Smooth animation trigger after slight delay
-    setTimeout(() => {
-      setAnimate(true);
-    }, 500);
-
   }, []);
 
   return (
@@ -63,7 +56,8 @@ const Skills = () => {
                 <motion.div
                   key={category}
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}   // ✅ animate on scroll
+                  viewport={{ once: false }}           // ✅ repeat on revisit
                   transition={{ duration: 0.6 }}
                   className="p-6 bg-gray-800 rounded-xl shadow-lg"
                 >
@@ -95,14 +89,15 @@ const Skills = () => {
                         </span>
                       </div>
 
-                      {/* 🔥 SMOOTH ANIMATED BAR */}
+                      {/* ✅ UPDATED PROGRESS BAR */}
                       <div className="w-full bg-gray-600 h-2 rounded-full overflow-hidden">
                         <motion.div
                           className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
-                          initial={{ width: 0 }}
-                          animate={{ width: animate ? `${skill.level}%` : "0%" }}
+                          initial={{ width: 0 }}                        // start 0
+                          whileInView={{ width: `${skill.level}%` }}    // go to %
+                          viewport={{ once: false }}                    // repeat
                           transition={{
-                            duration: 1.8,
+                            duration: 1.5,
                             delay: index * 0.2,
                             ease: "easeInOut"
                           }}
